@@ -1,0 +1,14 @@
+h1 Open-iconic icons
+
+- const COLUMNS = 7
+- var rows = Math.ceil(images.length/COLUMNS)
+
+table
+  tbody
+    - for (var r = 0; r < rows; r++)
+      - var imagesSubList = images.slice(COLUMNS*r, COLUMNS*r + COLUMNS)
+        tr
+          each image in imagesSubList
+            td
+              image(src="png/" + image, style='margin-top:20px;')
+              div(style='margin-top:2px;')= "oi oi-" + image.replace("-8x.png", "")

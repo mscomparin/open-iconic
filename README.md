@@ -21,6 +21,14 @@
 
 ### General Usage
 
+#### Generate html preview page
+
+To create an html page with all icons run:
+
+    node src/main.js > preview.html
+
+This will generate a static html page you can use to view in your browser locally.
+
 #### Using Open Iconic's SVGs
 
 We like SVGs and we think they're the way to display icons on the web. Since Open Iconic are just basic SVGs, we suggest you display them like you would any other image (don't forget the `alt` attribute).

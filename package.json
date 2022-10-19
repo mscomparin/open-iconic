@@ -2,12 +2,25 @@
   "name": "open-iconic",
   "description": "An open source icon set with marks in SVG, sprite, webfont and raster format",
   "version": "1.1.1",
-  "keywords": ["icon", "iconic", "open-iconic", "svg", "sprite", "font", "png", "webp"],
+  "keywords": [
+    "icon",
+    "iconic",
+    "open-iconic",
+    "svg",
+    "sprite",
+    "font",
+    "png",
+    "webp"
+  ],
   "homepage": "http://useiconic.com/open-iconic/",
   "author": {
     "name": "Iconic",
     "email": "yourfriends@useiconic.com",
     "web": "http://useiconic.com/"
+  },
+  "scripts": {
+    "start": "node src/main.js",
+    "format": "standard --fix"
   },
   "repository": {
     "type": "git",
@@ -32,5 +45,11 @@
       "type": "SIL OFL 1.1",
       "url": "http://scripts.sil.org/OFL"
     }
-  ]
+  ],
+  "dependencies": {
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "standard": "^17.0.0"
+  }
 }
