@@ -1,25 +1,43 @@
-async function getFileList () {
-  const fs = require('fs/promises')
-  return fs.readdir('./png')
-    .then(async list => {
-      return list
-        .filter(f => {
-          return f.includes('-8x.png')
-        })
-    })
+const fs = require('fs/promises')
+const pug = require('pug')
+
+const BIG_PNG_SUFFIX = '-8x.png'
+function getName (name) {
+  return 'oi oi-' + name.replace(BIG_PNG_SUFFIX, '')
+}
+function getPath (name) {
+  return 'png/' + name
+}
+function bigPngFilter (f) {
+  return f.includes(BIG_PNG_SUFFIX)
+}
+function bigPngMapper (name) {
+  return {
+    name: getName(name),
+    path: getPath(name)
+  }
 }
 
-async function drawPage (images) {
-  const pug = require('pug')
-  const compiledFunction = pug.compileFile('template.pug')
-  return compiledFunction({
-    images
-  })
+async function getFileList (ctx) {
+  return fs.readdir(ctx.path)
+    .then(async list => list.filter(ctx.filter))
+    .then(async filtered => filtered.map(ctx.mapper))
+}
+
+async function renderPage (templatePath, images) {
+  const compiledFunction = pug.compileFile(templatePath)
+  return compiledFunction({ images })
 }
 
 async function main () {
-  return getFileList('*-8px.png')
-    .then(async images => drawPage(images))
+  // using "png" folder's "-8x.png" images as source
+  const bigPngConfig = {
+    path: './png',
+    filter: bigPngFilter,
+    mapper: bigPngMapper
+  }
+  return getFileList(bigPngConfig)
+    .then(async images => renderPage('template.pug', images))
 }
 
 main()
