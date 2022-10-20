@@ -1,5 +1,5 @@
-rm -rfv pages
-mkdir -p pages/png
-cp --recursive --verbose png/*8x.png pages/png
-node src/main.js | tee pages/index.html
+rm -rfv docs
+mkdir -p docs/png
+cp --recursive --verbose png/*8x.png docs/png
+node src/main.js | tee docs/index.html
 
