@@ -20,7 +20,8 @@
   },
   "scripts": {
     "start": "node src/main.js",
-    "format": "standard --fix"
+    "format": "standard --fix",
+    "create-pages": "scripts/create-pages"
   },
   "repository": {
     "type": "git",
